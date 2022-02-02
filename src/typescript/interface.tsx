@@ -1,6 +1,6 @@
 //all interfaces used in this application are defined here
 
-export interface data{
+export interface IBooks{
     books: {
         name: string;
         author: string;

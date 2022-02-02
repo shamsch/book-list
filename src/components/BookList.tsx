@@ -1,6 +1,6 @@
-import { data } from "../typescript/interface";
+import { IBooks } from "../typescript/interface";
 
-const BookList:React.FC<data> = ({books}) => {
+const BookList:React.FC<IBooks> = ({books}) => {
 
   return (
     <div>
