@@ -1,10 +1,9 @@
 import { IBooks } from "../typescript/interface";
 
 const BookList:React.FC<IBooks> = ({books}) => {
-
   return (
     <div>
-      {books.map((book:any) => {
+      {books && books.map((book) => {
         return (
           <div key={book.id}>
             <h3>{book.name}</h3>

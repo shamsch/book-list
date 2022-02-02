@@ -6,5 +6,5 @@ export interface IBooks{
         author: string;
         id: string;
         goodReadsUrl: string;
-    }[]
+    }[] | null
 }
