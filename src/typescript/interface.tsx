@@ -6,5 +6,13 @@ export interface IBooks{
         author: string;
         id: string;
         goodReadsUrl: string;
-    }[] | null
+    }[] | null,
+}
+
+export interface IBooksAsObject{
+    booksAsObject:{
+        name: string;
+        author: string;
+        goodReadsUrl: string;
+    }
 }

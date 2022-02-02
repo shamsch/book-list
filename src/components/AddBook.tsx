@@ -1,5 +1,38 @@
+import { useState } from "react";
+import { IBooksAsObject } from "../typescript/interface";
 
+import { db } from "../firebase/config";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function AddBook() {
-  return <div></div>;
+  const [formValue, setFormValue] = useState<IBooksAsObject["booksAsObject"]>({
+    name: "",
+    author: "",
+    goodReadsUrl: ""
+  })
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setFormValue({
+      name: "",
+      author: "",
+      goodReadsUrl: ""
+    })
+    const ref = collection(db, 'books-list')
+    await addDoc(ref, {
+      ...formValue
+    })
+  }
+
+  return (
+    <form onSubmit={(e) => handleSubmit(e)}>
+      <label>Book name</label> <br />
+      <input value={formValue.name} onChange={(e) => setFormValue({ ...formValue, [e.target.name]: e.target.value })} name="name" /> <br />
+      <label>Author</label> <br />
+      <input value={formValue.author} onChange={(e) => setFormValue({ ...formValue, [e.target.name]: e.target.value })} name="author" /> <br />
+      <label>goodreads link</label> <br />
+      <input value={formValue.goodReadsUrl} onChange={(e) => setFormValue({ ...formValue, [e.target.name]: e.target.value })} name="goodReadsUrl" /> <br />
+      <button>Add</button>
+    </form>
+  );
 }
