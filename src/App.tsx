@@ -11,14 +11,15 @@ function App() {
   const { user } = useAuthContext();
 
   return (
-    <BrowserRouter>
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={user ? <Home /> : <SignIn/>} />
-        <Route path="/sign-in" element={user ? <Home /> : <SignIn/>} />
-      </Routes>
-    </BrowserRouter>
-
+    <div className='App'>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={user ? <Home /> : <SignIn />} />
+          <Route path="/sign-in" element={user ? <Home /> : <SignIn />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

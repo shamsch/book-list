@@ -15,8 +15,8 @@ export default function Home() {
 
   return (
     <div>
-      <BookList books={document} />
       <AddBook />
+      <BookList books={document} />
     </div>
   );
 }
