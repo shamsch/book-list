@@ -29,11 +29,11 @@ export default function AddBook() {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <label>Book name</label> <br />
+      <label>Book name 📚</label> <br />
       <input value={formValue.name} onChange={(e) => setFormValue({ ...formValue, [e.target.name]: e.target.value })} name="name" /> <br />
-      <label>Author</label> <br />
+      <label>Author 👨‍💼</label> <br />
       <input value={formValue.author} onChange={(e) => setFormValue({ ...formValue, [e.target.name]: e.target.value })} name="author" /> <br />
-      <label>goodreads link</label> <br />
+      <label>GoodReads link 🔗</label> <br />
       <input value={formValue.goodReadsUrl} onChange={(e) => setFormValue({ ...formValue, [e.target.name]: e.target.value })} name="goodReadsUrl" /> <br />
       <button>Add</button>
     </form>
