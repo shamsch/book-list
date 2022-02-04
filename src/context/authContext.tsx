@@ -7,7 +7,7 @@ export const authContext = createContext<IContext | null>(null)
 
 export type Action = {
     type: 'SIGN_IN' | 'SIGN_OUT' ,
-    payload: User
+    payload: User | null
 }
 
 type State = {
@@ -19,7 +19,7 @@ export const authReducer = (state:State, {type,payload}: Action) => {
         case 'SIGN_IN':
             return { ...state, user: payload }
         case 'SIGN_OUT':
-            return { ...state, user: null }
+            return { ...state, user: payload }
         default:
             return state
     }
