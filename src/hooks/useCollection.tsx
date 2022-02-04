@@ -1,16 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { db } from "../firebase/config";
 
 //firebase imports 
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, CollectionReference, DocumentData, onSnapshot, Query, query,where, WhereFilterOp } from "firebase/firestore";
 import { IBooks } from "../typescript/interface";
 
-export const useCollection = (collectionName: string) => {
+export const useCollection = (collectionName: string, _query: [string,WhereFilterOp,string]) => {
     const [document, setDocument] = useState<IBooks['books']>(null)
 
-    useEffect(() => {
-        let ref = collection(db, collectionName)
+    const queryArray = useRef(_query).current
 
+    useEffect(() => {
+        let ref: CollectionReference<DocumentData>|Query<DocumentData>= collection(db, collectionName)
+
+        if(query){
+            ref= query(ref, where(...queryArray))
+        }
         const unsub = onSnapshot(ref, (snapshot) => {
             let result: IBooks['books'] = []
             snapshot.docs.forEach(doc => {
@@ -21,7 +26,7 @@ export const useCollection = (collectionName: string) => {
         })
 
         return () => unsub()
-    }, [collectionName])
+    }, [collectionName, queryArray])
 
     return { document };
 }

@@ -3,8 +3,11 @@ import { IBooksAsObject } from "../typescript/interface";
 
 import { db } from "../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function AddBook() {
+  const {user}=useAuthContext();
+
   const [formValue, setFormValue] = useState<IBooksAsObject["booksAsObject"]>({
     name: "",
     author: "",
@@ -20,7 +23,7 @@ export default function AddBook() {
     })
     const ref = collection(db, 'books-list')
     await addDoc(ref, {
-      ...formValue
+      ...formValue, uid:user?user.uid:""
     })
   }
 
