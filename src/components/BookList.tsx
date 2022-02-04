@@ -15,7 +15,7 @@ const BookList: React.FC<IBooks> = ({ books }) => {
           <div key={book.id}>
             <h3>{book.name}</h3>
             <p>{book.author}</p>
-            <a href={book.goodReadsUrl}>📚 goodreads link</a>
+            <a href={book.goodReadsUrl}>✨ GoodReads link</a>
             <button onClick={() => handleDelete(book.id)}>Delete</button>
           </div>
         )
